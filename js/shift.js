@@ -1,4 +1,5 @@
 var str, opc;
+var M = [[]]; // Message block
 
 function magia(pal, opcion){
     str = pal;
@@ -80,6 +81,8 @@ function getNumberRowShifts() {
 /* 
 rowShift function:
     - Do the horizontal shift of the row i
+        n = number of shifts
+        row_index = row index of the matrix to be shifted
 */
 function rowShift(n, row_index) {
     var auxM = M;
@@ -94,5 +97,22 @@ function rowShift(n, row_index) {
             var new_colum_index = (j + (4-n)) % 4;
             M[row_index, new_colum_index] = auxM[row_index, j]; 
         }
+    }
+}
+
+/*
+    buildMatrix function:
+        - Builds the Matrix based on a msg (string)
+*/
+function buildMatrix(msg) {
+    var iM = 0; // row of M
+    var auxRow = [];
+    for (var i = 0; i  < msg.length; i++) {
+        if (i % 3 == 0) { // Each 4 characters adds the array to the M array to form the Matrix
+            M[iM].push(auxRow);
+            iM++;
+            auxRow = []; 
+        }
+        auxRow.push(msg.charAt(i));
     }
 }
