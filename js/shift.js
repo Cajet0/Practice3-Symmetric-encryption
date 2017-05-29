@@ -118,6 +118,25 @@ function buildMatrix(msg) {
             msgIndex++;
         }
     }
+    transpuesta(M);
+}
+
+/* transpuesta function:
+		- Builds the transposed matrix based on the matrix M
+*/
+function transpuesta(matrix) {
+    var transp = new Array(4);
+	// create the matrix
+    for(var i=0; i<4; i++) {
+        transp[i] = new Array(4);
+    }
+	// fill the matrix
+    for(var i=0; i<4; i++){
+        for(var j=0; j<4; j++){
+            transp[i][j] = matrix[j][i];
+        }
+    }
+    alert(transp);
 }
 
 buildMatrix("hola todos");
